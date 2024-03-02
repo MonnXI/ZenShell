@@ -1,0 +1,3 @@
+The version 1.0.0 (beta) is the first edition of ZenShell. 
+
+Now 5 commands are available.
