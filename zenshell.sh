@@ -1,11 +1,11 @@
 #!/bin/bash
-curl -L https://raw.githubusercontent.com/youmawaii/Exodux/main/Attention.txt
+curl -L https://raw.githubusercontent.com/Lichen13/Exodux/main/Attention.txt?token=GHSAT0AAAAAACO4OPVONJFTELCXPGWPZPMAZPDTJYA
 
 read -p "┌[ZenShell] > " commandvar
 
 running=$true
 
-version="1.0"
+version="1.0.0"
 
 while [ $running == $false ]; do
 
@@ -22,7 +22,7 @@ while [ $running == $false ]; do
         clear
         read -p "┌[ZenShell] > " commandvar
     else
-        echo -e "\e[1;31m Error 1: command not found\e[0m"
+        echo -e "\e[1;31m└Error 1: command not found\e[0m"
         read -p "┌[ZenShell] > " commandvar
     fi
 done
