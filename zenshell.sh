@@ -25,7 +25,8 @@ while [ "$running" == true ]; do
         sleep 0.5
         exit
     elif [ "$commandvar" == "version" ]; then
-        echo "└ZenShell is now in version : $version"
+        echo "│ZenShell is now in version : $version"
+        echo "└The latest version is : $latestVersion"
         read -p "┌[ZenShell] > " commandvar arg1
     elif [ "$commandvar" == "clear" ]; then
         clear
