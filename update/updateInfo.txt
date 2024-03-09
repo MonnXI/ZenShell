@@ -1,2 +1,1 @@
 The last update adds the module command and removes the sudo command
-name=jq
