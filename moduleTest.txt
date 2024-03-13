@@ -1,3 +1,0 @@
-    elif [ "$commandvar" == "arara" ]; then
-        echo "salut"
-        name="test"
