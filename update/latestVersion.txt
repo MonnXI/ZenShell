@@ -1,3 +1,1 @@
-    elif [ "$commandvar" == "arara" ]
-        echo "ur mom"
-        name="test"
+1.0.11 (beta)
