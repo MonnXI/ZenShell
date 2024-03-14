@@ -8,6 +8,8 @@ declare -A moduleNames
 beta=true
 version="1.0.1 (beta)"
 
+mKey=0
+
 if [ "$beta" == false ]; then
     if [ "$latestVersion" != "$version" ]; then
         echo "IMPORTANT --- Your stable system needs an update !"
@@ -54,13 +56,17 @@ while [ "$running" == true ]; do
                     echo -e "\e[1;31m└Error 4: this is not a module\e[0m"
                 fi
             fi
-        elif [ "$arg1" == "update" ]; then
-            curl -L "$arg2"
-        fi
         read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "help" ]; then
         echo -e "│Help menu : \n│Command help [no arguments]: show this menu\n│Command exit [no arguments]: exit the terminal\n│Command version [no arguments]: show the actual version and the latest version of ZenShell\n│Command clear [no arguments]: clear the terminal\n└Command module [install/remove/update] [module_url(install)/module_name(remove/update)]: manage the modules of ZenShell"
         read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+    elif [ "$commandvar" == "update" ]; then
+        if [ "$arg1" == "stable" ]; then
+            curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
+            read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+        elif [ "$arg1" == "beta" ]; then
+            curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
+        fi
         #ENTER MODULES HERE
     elif [ "$commandvar" == "" ]; then
         read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
