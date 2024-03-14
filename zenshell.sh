@@ -5,8 +5,8 @@ latestBeta=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/beta/upd
 running=true
 
 declare -A moduleNames
-beta=true
-version="1.0.1 (beta)"
+beta=false
+version="1.1.0"
 
 mKey=0
 
