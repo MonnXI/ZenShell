@@ -1,4 +1,5 @@
 #!/bin/bash
+
 latestVersion=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/main/update/latestVersion.txt')
 
 running=true
@@ -7,11 +8,12 @@ declare -A moduleNames
 beta=false
 version="1.0.1"
 
-if [ "$beta" == false ]
+if [ "$beta" == false ]; then
     if [ "$latestVersion" != "$version" ]; then
         echo "IMPORTANT --- Your system needs an update !"
     fi
 fi
+
 read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
 
 while [ "$running" == true ]; do
@@ -39,9 +41,11 @@ while [ "$running" == true ]; do
                 echo -e "\e[1;31m└Error 3: missing arguments\e[0m"
             elif [ "$arg2" != "" ]; then
                 module=$(curl -s "$arg2")
+                line_number=60
                 module_name=$(curl -s "$arg2" | grep "name=")
                 if [ -n "$module_name" ]; then
-                    echo "$module_name"
+                    awk -v content="$module" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
+                    echo -e "Successfully downloaded : $module_name"
                 else
                     echo -e "\e[1;31m└Error 4: this is not a module\e[0m"
                 fi
@@ -65,5 +69,5 @@ done
 # Error list:
 # Error 1: command not found
 # Error 2: command is none
-# Error 3: Missing arguments
+# Error 3: missing arguments
 # Error 4: this is not a module
