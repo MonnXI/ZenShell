@@ -1,7 +1,7 @@
 #!/bin/bash
 
-latestVersion=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/main/update/latestVersion.txt')
-
+latestVersion=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/stable/update/latestVersion.txt')
+latestBeta=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/beta/update/latestVersion.txt')
 running=true
 
 declare -A moduleNames
@@ -10,7 +10,11 @@ version="1.1.0"
 
 if [ "$beta" == false ]; then
     if [ "$latestVersion" != "$version" ]; then
-        echo "IMPORTANT --- Your system needs an update !"
+        echo "IMPORTANT --- Your stable system needs an update !"
+    fi
+else
+    if [ "$latestBeta" != "$version" ]; then
+        echo -e "IMPORTANT --- Your beta system needs an update !"
     fi
 fi
 
@@ -45,7 +49,7 @@ while [ "$running" == true ]; do
                 module_name=$(curl -s "$arg2" | grep "name=")
                 if [ -n "$module_name" ]; then
                     awk -v content="$module" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
-                    echo -e "Successfully downloaded : $module_name"
+                    echo -e "└Successfully downloaded : $module_name"
                 else
                     echo -e "\e[1;31m└Error 4: this is not a module\e[0m"
                 fi
