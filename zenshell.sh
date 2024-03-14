@@ -5,7 +5,7 @@ latestVersion=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/main/
 running=true
 
 declare -A moduleNames
-beta=false
+beta=true
 version="1.0.1"
 
 if [ "$beta" == false ]; then
