@@ -1,4 +1,4 @@
-v1.0.1 (pre-release)
+v1.1.0 stable
 This is a version who adds the modules command a module is a custom command with capabilities and can be linked to python files.
 A module is just an elif with the variable name= to set the name of the module in it and also uses the arg1, arg2, arg3 and arg4 for arguments (up to 4 arguments).
 Also the end there is this line of code: read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4.
