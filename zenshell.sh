@@ -66,6 +66,10 @@ while [ "$running" == true ]; do
             read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
         elif [ "$arg1" == "beta" ]; then
             curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
+            read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+        else
+            curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
+            read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
         fi
         #ENTER MODULES HERE
     elif [ "$commandvar" == "" ]; then
