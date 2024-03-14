@@ -2,8 +2,6 @@
 
 ## Supported Versions
 
-Versions with security updates are the ones with a third integral like that: 1.0.x
-
 | Version    | Supported          |
 | ---------- | ------------------ |
 | 1.1.0      | :white_check_mark: |
