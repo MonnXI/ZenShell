@@ -5,8 +5,10 @@ latestBeta=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/beta/upd
 running=true
 
 declare -A moduleNames
-beta=false
-version="1.1.0"
+beta=true
+version="1.0.1 (beta)"
+
+mKey=0
 
 if [ "$beta" == false ]; then
     if [ "$latestVersion" != "$version" ]; then
@@ -61,6 +63,9 @@ while [ "$running" == true ]; do
     elif [ "$commandvar" == "help" ]; then
         echo -e "│Help menu : \n│Command help [no arguments]: show this menu\n│Command exit [no arguments]: exit the terminal\n│Command version [no arguments]: show the actual version and the latest version of ZenShell\n│Command clear [no arguments]: clear the terminal\n└Command module [install/remove/update] [module_url(install)/module_name(remove/update)]: manage the modules of ZenShell"
         read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+    elif [ "$commandvar" == "update" ]; then
+        if [ "$arg1" == "stable" ]; then
+            curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
         #ENTER MODULES HERE
     elif [ "$commandvar" == "" ]; then
         read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
@@ -75,3 +80,4 @@ done
 # Error 2: command is none
 # Error 3: missing arguments
 # Error 4: this is not a module
+# Updated
