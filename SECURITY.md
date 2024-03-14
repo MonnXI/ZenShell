@@ -13,3 +13,5 @@
 
 Use the issues or contact MonnTheBoss to report any security problem or dangerous glitch.
 For reporting bugs users become bug hunters. Bug hunters get a first look at everything who get out of beta before it's published.
+
+#### ZenShell works with bash 5.0 https://www.gnu.org/software/bash/ 
