@@ -8,7 +8,7 @@ Versions with security updates are the ones with a third integral like that: 1.0
 | ---------- | ------------------ |
 | 1.1.0      | :white_check_mark: |
 | 1.0.1(beta)| ✅                 |
-| 1.0.0 <    | :x:                |
+| 1.0.0      | :x:                |
 | 1.0.0(beta)| :x:                |
 
 ## Reporting a Vulnerability
