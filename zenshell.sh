@@ -63,7 +63,7 @@ while [ "$running" == true ]; do
                 echo -e "\e[1;31m└Error 3: missing arguments\e[0m"
             elif [ "$arg2" != "" ]; then
                 module=$(curl -s "$arg2")
-                line_number=116
+                line_number=129
                 module_name=$(curl -s "$arg2" | grep "name=")
                 if [ -n "$module_name" ]; then
                     awk -v content="$module" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
