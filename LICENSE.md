@@ -1,4 +1,4 @@
-                    MY TESTING LICENSE
+                    GNU General Public License v3.0
                        Version 3, 29 June 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
