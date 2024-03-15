@@ -6,17 +6,20 @@ running=true
 
 declare -A moduleNames
 beta=true
-version="1.0.1 (beta)"
+version="1.1.10 (beta)"
+goodVersion=true
 
 mKey=0
 
 if [ "$beta" == false ]; then
     if [ "$latestVersion" != "$version" ]; then
         echo "IMPORTANT --- Your stable system needs an update !"
+        goodVersion=false
     fi
 else
     if [ "$latestBeta" != "$version" ]; then
         echo -e "IMPORTANT --- Your beta system needs an update !"
+        goodVersion=false
     fi
 fi
 
@@ -56,20 +59,52 @@ while [ "$running" == true ]; do
                     echo -e "\e[1;31m└Error 4: this is not a module\e[0m"
                 fi
             fi
+        fi
         read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "help" ]; then
         echo -e "│Help menu : \n│Command help [no arguments]: show this menu\n│Command exit [no arguments]: exit the terminal\n│Command version [no arguments]: show the actual version and the latest version of ZenShell\n│Command clear [no arguments]: clear the terminal\n└Command module [install/remove/update] [module_url(install)/module_name(remove/update)]: manage the modules of ZenShell"
         read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "update" ]; then
         if [ "$arg1" == "stable" ]; then
-            curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
-            read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+            if [ "$goodVersion" == false ]; then
+                if [ "$beta" == false ]; then
+                    curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
+                    echo "└Successfully updated stable ZenShell"
+                    read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                fi
+            elif [ "$beta" == true ]; then
+                curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
+                echo "└Successfully switched to stable ZenShell"
+                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+            else
+                echo "└Your ZenShell stable is already updated"
+            fi
         elif [ "$arg1" == "beta" ]; then
-            curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
-            read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+            if [ "$goodVersion" == false ]; then
+                if [ "$beta" == true]; then
+                    curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
+                    echo "└Successfully updated your ZenShell beta"
+                    read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                elif [ "$beta" == false ]; then
+                    echo "└Your ZenShell stable is not updated. To switch to beta please update to latest stable version then to beta."
+                fi
+            elif [ "$beta" == false ]; then
+                curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
+                echo "└Successfully switched to ZenShell beta"
+                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+            fi
         else
-            curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
-            read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+            if [ "$goodVersion" == false ]; then
+                if [ "$beta" == false ]; then
+                    curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
+                    echo "└Successfully updated stable ZenShell"
+                    read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                else
+                    curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
+                    echo "└Successfully updated beta ZenShell"
+                    read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                fi
+            fi
         fi
         #ENTER MODULES HERE
     elif [ "$commandvar" == "" ]; then
