@@ -1,5 +1,18 @@
 #!/bin/bash
 
+#######################################################################
+# Program: ZenShell
+# Copyright (c) 2024 MonnTheBoss
+# 
+#Usage:
+#  To use this script, run:
+#  ./zenshell.sh
+#
+# This script is governed by the terms of the GNU General Public License v3.0
+# The latest version of the license can be found at:
+# https://www.gnu.org/licenses/gpl-3.0.html
+#######################################################################
+
 latestVersion=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/stable/update/latestVersion.txt')
 latestBeta=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/beta/update/latestVersion.txt')
 running=true
