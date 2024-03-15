@@ -2,7 +2,7 @@
 
 #######################################################################
 # Program: ZenShell
-# Copyright (c) 2024 MonnTheBoss
+# Copyright (c) 2024 MonnTheBoss, Lichen
 # 
 # Usage:
 #   To use this script, run:
