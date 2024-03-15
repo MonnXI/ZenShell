@@ -19,7 +19,7 @@ running=true
 
 declare -A moduleNames
 beta=true
-version="1.1.10 (beta)"
+version="1.1.11 (beta)"
 goodVersion=true
 
 mKey=0
