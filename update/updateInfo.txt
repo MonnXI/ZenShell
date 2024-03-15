@@ -1,7 +1,12 @@
-v1.1.0 stable
-This is a version who adds the modules command a module is a custom command with capabilities and can be linked to python files.
+v1.1.1 stable
+
+REMINDER :
+
 A module is just an elif with the variable name= to set the name of the module in it and also uses the arg1, arg2, arg3 and arg4 for arguments (up to 4 arguments).
 Also the end there is this line of code: read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4.
 This update also removes the sudo command and add a beta variable to get the beta versions of ZenShell.
 
 IMPORTANT --- The objective of modules is to get the community to participate while creating any modules they want with their need
+
+WHAT'S NEW :
+-The update command is there to update your script or switch from stable to beta.
