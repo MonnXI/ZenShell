@@ -74,10 +74,11 @@ while [ "$running" == true ]; do
                 fi
             elif [ "$beta" == true ]; then
                 curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
-                echo "└Successfully switched to stable ZenShell"
+                echo "└Successfully switched to stable ZenShell. Restart ZenShell to use it"
                 read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
             else
-                echo "└Your ZenShell stable is already updated"
+                echo "└ZenShell is already to the newest version"
+                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
             fi
         elif [ "$arg1" == "beta" ]; then
             if [ "$goodVersion" == false ]; then
@@ -90,7 +91,10 @@ while [ "$running" == true ]; do
                 fi
             elif [ "$beta" == false ]; then
                 curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
-                echo "└Successfully switched to ZenShell beta"
+                echo "└Successfully switched to ZenShell beta. Restart ZenShell to use it."
+                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+            else
+                echo "└ZenShell is already to the newest version"
                 read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
             fi
         else
@@ -104,6 +108,9 @@ while [ "$running" == true ]; do
                     echo "└Successfully updated beta ZenShell"
                     read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
                 fi
+            else
+                echo "└ZenShell is already to the newest version"
+                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
             fi
         fi
         #ENTER MODULES HERE
