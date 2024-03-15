@@ -6,17 +6,20 @@ running=true
 
 declare -A moduleNames
 beta=false
-version="1.1.0"
+version="1.1.1"
+goodVersion=true
 
 mKey=0
 
 if [ "$beta" == false ]; then
     if [ "$latestVersion" != "$version" ]; then
         echo "IMPORTANT --- Your stable system needs an update !"
+        goodVersion=false
     fi
 else
     if [ "$latestBeta" != "$version" ]; then
         echo -e "IMPORTANT --- Your beta system needs an update !"
+        goodVersion=false
     fi
 fi
 
@@ -56,8 +59,6 @@ while [ "$running" == true ]; do
                     echo -e "\e[1;31m└Error 4: this is not a module\e[0m"
                 fi
             fi
-        elif [ "$arg1" == "update" ]; then
-            curl -L "$arg2"
         fi
         read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "help" ]; then
@@ -65,7 +66,53 @@ while [ "$running" == true ]; do
         read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "update" ]; then
         if [ "$arg1" == "stable" ]; then
-            curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
+            if [ "$goodVersion" == false ]; then
+                if [ "$beta" == false ]; then
+                    curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
+                    echo "└Successfully updated stable ZenShell"
+                    read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                fi
+            elif [ "$beta" == true ]; then
+                curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
+                echo "└Successfully switched to stable ZenShell. Restart ZenShell to use it"
+                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+            else
+                echo "└ZenShell is already to the newest version"
+                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+            fi
+        elif [ "$arg1" == "beta" ]; then
+            if [ "$goodVersion" == false ]; then
+                if [ "$beta" == true]; then
+                    curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
+                    echo "└Successfully updated your ZenShell beta"
+                    read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                elif [ "$beta" == false ]; then
+                    echo "└Your ZenShell stable is not updated. To switch to beta please update to latest stable version then to beta."
+                fi
+            elif [ "$beta" == false ]; then
+                curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
+                echo "└Successfully switched to ZenShell beta. Restart ZenShell to use it."
+                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+            else
+                echo "└ZenShell is already to the newest version"
+                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+            fi
+        else
+            if [ "$goodVersion" == false ]; then
+                if [ "$beta" == false ]; then
+                    curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
+                    echo "└Successfully updated stable ZenShell"
+                    read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                else
+                    curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
+                    echo "└Successfully updated beta ZenShell"
+                    read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                fi
+            else
+                echo "└ZenShell is already to the newest version"
+                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+            fi
+        fi
         #ENTER MODULES HERE
     elif [ "$commandvar" == "" ]; then
         read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
@@ -80,4 +127,3 @@ done
 # Error 2: command is none
 # Error 3: missing arguments
 # Error 4: this is not a module
-# Updated
