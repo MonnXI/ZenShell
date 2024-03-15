@@ -4,9 +4,9 @@
 # Program: ZenShell
 # Copyright (c) 2024 MonnTheBoss
 # 
-#Usage:
-#  To use this script, run:
-#  ./zenshell.sh
+# Usage:
+#   To use this script, run:
+#   ./zenshell.sh
 #
 # This script is governed by the terms of the GNU General Public License v3.0
 # The latest version of the license can be found at:
@@ -63,7 +63,7 @@ while [ "$running" == true ]; do
                 echo -e "\e[1;31m└Error 3: missing arguments\e[0m"
             elif [ "$arg2" != "" ]; then
                 module=$(curl -s "$arg2")
-                line_number=129
+                line_number=137
                 module_name=$(curl -s "$arg2" | grep "name=")
                 if [ -n "$module_name" ]; then
                     awk -v content="$module" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
@@ -75,7 +75,7 @@ while [ "$running" == true ]; do
         fi
         read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "help" ]; then
-        echo -e "│Help menu : \n│Command help [no arguments]: show this menu\n│Command exit [no arguments]: exit the terminal\n│Command version [no arguments]: show the actual version and the latest version of ZenShell\n│Command clear [no arguments]: clear the terminal\n└Command module [install/remove/update] [module_url(install)/module_name(remove/update)]: manage the modules of ZenShell"
+        echo -e "│Help menu : \n│Command help [no arguments]: show this menu\n│Command exit [no arguments]: exit the terminal\n│Command version [no arguments]: show the actual version and the latest version of ZenShell\n│Command clear [no arguments]: clear the terminal\n│Command module [install/remove/update] [module_url(install)/module_name(remove/update)]: manage the modules of ZenShell\n└Command update [beta/stable/info]: to switch from stable to beta just update or know the update infos"
         read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "update" ]; then
         if [ "$arg1" == "stable" ]; then
@@ -110,7 +110,7 @@ while [ "$running" == true ]; do
                 echo "└ZenShell is already to the newest version"
                 read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
             fi
-        else
+        elif [ "$arg1" == "" ]; then
             if [ "$goodVersion" == false ]; then
                 if [ "$beta" == false ]; then
                     curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
@@ -123,6 +123,14 @@ while [ "$running" == true ]; do
                 fi
             else
                 echo "└ZenShell is already to the newest version"
+                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+            fi
+        elif [ "$arg1" == "info" ]; then
+            if [ "$beta" == false ]; then
+                curl -L "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/update/updateInfo.txt"
+                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+            elif [ "$beta" == true ];then
+                curl -L "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/update/updateInfo.txt"
                 read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
             fi
         fi
