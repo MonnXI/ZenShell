@@ -9,4 +9,5 @@
 │IMPORTANT --- The objective of modules is to get the community to participate while creating any │modules they want with their need
 │
 │WHAT'S NEW :
-└  -The update command is there to update your script or switch from stable to beta.
+│  -The update command is there to update your script or switch from stable to beta.
+└------------------------------------------------------------------------------------------------
