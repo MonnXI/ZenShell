@@ -10,4 +10,5 @@
 │
 │
 │What's new :
-└  -The update command is there with a way to download the beta version and the stable with only one command
+│  -The update command is there with a way to download the beta version and the stable with only one command
+└-------------------------------------------------------
