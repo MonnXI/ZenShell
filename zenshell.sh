@@ -36,7 +36,7 @@ else
     fi
 fi
 
-read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
 
 while [ "$running" == true ]; do
 
@@ -51,10 +51,10 @@ while [ "$running" == true ]; do
     elif [ "$commandvar" == "version" ]; then
         echo "│ZenShell is now in version : $version"
         echo "└The latest version is : $latestVersion"
-        read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+        read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "clear" ]; then
         clear
-        read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+        read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "module" ]; then
         if [ "$arg1" == "" ]; then
             echo -e "module command:\narg1: install / remove / update\narg2: module_url / module_name"
@@ -73,73 +73,150 @@ while [ "$running" == true ]; do
                 fi
             fi
         fi
-        read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+        read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
+    elif [ "$commandvar" == "exopod" ]; then
+        read -p "└[Exopod] ➜ " exoMain exo1 exo2 exo3
+        read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "help" ]; then
-        echo -e "│Help menu : \n│Command help [no arguments]: show this menu\n│Command exit [no arguments]: exit the terminal\n│Command version [no arguments]: show the actual version and the latest version of ZenShell\n│Command clear [no arguments]: clear the terminal\n│Command module [install/remove/update] [module_url(install)/module_name(remove/update)]: manage the modules of ZenShell\n└Command update [beta/stable/info]: to switch from stable to beta just update or know the update infos"
-        read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+        echo -e "│Help menu : \n│Command help [n arguments]: show this menu\n│Command exit [no arguments]: exit the terminal\n│Command version [no arguments]: show the actual version and the latest version of ZenShell\n│Command clear [no arguments]: clear the terminal\n│Command module [install/remove/update] [module_url(install)/module_name(remove/update)]: manage the modules of ZenShell\n└Command update [beta/stable/info]: to switch from stable to beta just update or know the update infos"
+        read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "update" ]; then
         if [ "$arg1" == "stable" ]; then
             if [ "$goodVersion" == false ]; then
                 if [ "$beta" == false ]; then
                     curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
                     echo "└Successfully updated stable ZenShell"
-                    read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                    read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
                 fi
             elif [ "$beta" == true ]; then
                 curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
                 echo "└Successfully switched to stable ZenShell. Restart ZenShell to use it"
-                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             else
                 echo "└ZenShell is already to the newest version"
-                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             fi
         elif [ "$arg1" == "beta" ]; then
             if [ "$goodVersion" == false ]; then
                 if [ "$beta" == true]; then
                     curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
                     echo "└Successfully updated your ZenShell beta"
-                    read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                    read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
                 elif [ "$beta" == false ]; then
                     echo "└Your ZenShell stable is not updated. To switch to beta please update to latest stable version then to beta."
                 fi
             elif [ "$beta" == false ]; then
                 curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
                 echo "└Successfully switched to ZenShell beta. Restart ZenShell to use it."
-                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             else
                 echo "└ZenShell is already to the newest version"
-                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             fi
         elif [ "$arg1" == "" ]; then
             if [ "$goodVersion" == false ]; then
                 if [ "$beta" == false ]; then
                     curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
                     echo "└Successfully updated stable ZenShell"
-                    read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                    read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
                 else
                     curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
                     echo "└Successfully updated beta ZenShell"
-                    read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                    read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
                 fi
             else
                 echo "└ZenShell is already to the newest version"
-                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             fi
         elif [ "$arg1" == "info" ]; then
             if [ "$beta" == false ]; then
                 curl -L "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/update/updateInfo.txt"
-                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             elif [ "$beta" == true ];then
                 curl -L "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/update/updateInfo.txt"
-                read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+                read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
+            fi
+        fi
+    elif [ "$commandvar" == "osinf" ]; then
+        version=$(grep -E '^VERSION=' /etc/os-release | awk -F'=' '{print $2}' | sed 's/"//g')
+        osName=$(grep -E '^NAME=' /etc/os-release | awk -F'=' '{print $2}' | sed 's/"//g')
+        echo -e "│➜ Os name is $osName"
+        echo -e "└➜ Version is $version"
+        read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
+    elif [ "$commandvar" == "wifi" ]; then
+        if [ "$arg1" == "" ]; then
+            echo -e "│---WIFI Command---\n│\n│➜ connect: [wifi connect (SSID) (PASSWD)]\n└➜ list: [no arguments]"
+            read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
+        elif [ "$arg1" == "list" ]; then
+            nmcli dev wifi list
+            read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
+        elif [ "$arg1" == "connect" ]; then
+            if [ "$arg2" == "" ]; then
+                echo -e "\e[1;31m└Error 3: missing arguments\e[0m" 
+                read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
+            elif [ "$arg2" != "" ]; then
+                if [ "$arg3" == "" ]; then
+                    echo -e "\e[1;31m└Error 3: missing arguments\e[0m"
+                    read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
+                elif [ "$arg3" != "" ]; then
+                    sudo nmcli dev wifi connect "$arg3" password "$arg4"
+                    echo -e "\033[1A\033[K└ [/] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [|] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [\] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [/] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [|] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [\] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [/] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [|] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [\] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [/] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [|] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [\] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [/] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [|] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [\] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [/] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [|] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [\] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [/] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [|] connecting"
+                    sleep 0.2
+                    echo -e "\033[1A\033[K└ [\] connecting"
+                    connectionCheck=$(nmcli dev wifi list)
+                    if grep -q "*" *; then
+                        echo -e "\033[1A\033[K└ Connected :p"
+                    else
+                        echo -e "\033[1;31m└ Error 6: failed to connect to internet\e[0m"
+                    fi
+                    read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
+                fi
             fi
         fi
         #ENTER MODULES HERE
     elif [ "$commandvar" == "" ]; then
-        read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+        read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     else
         echo -e "\e[1;31m└Error 1: command not found\e[0m"
-        read -p "┌[ZenShell] > " commandvar arg1 arg2 arg3 arg4
+        read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     fi
 done
 
@@ -148,3 +225,5 @@ done
 # Error 2: command is none
 # Error 3: missing arguments
 # Error 4: this is not a module
+# Error 5: this argument does not exist
+# Error 6: failed to connect to internet
