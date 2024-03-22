@@ -1,4 +1,5 @@
 # ZenShell Project
+![GitHub Repo stars](https://img.shields.io/github/stars/ankidroid/Anki-Android?style=social)
 
 ## Description:
   ZenShell is a project of bash with custom commands and modules that you can install to do things 
