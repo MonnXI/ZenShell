@@ -16,7 +16,10 @@
 latestVersion=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/stable/update/latestVersion.txt')
 latestBeta=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/beta/update/latestVersion.txt')
 running=true
-
+if [ $? -ne 0 ]; then
+    echo -e "\e[1;31m└Error 8: no internet connection\e[0m"
+    exit
+fi
 declare -A moduleNames
 beta=true
 version="1.1.12 (beta)"
@@ -222,3 +225,5 @@ done
 # Error 4: this is not a module
 # Error 5: this argument does not exist
 # Error 6: failed to connect to internet
+# Error 7: cannot reach url
+# Error 8: no internet connection
