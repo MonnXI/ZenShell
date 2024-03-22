@@ -202,7 +202,7 @@ while [ "$running" == true ]; do
                     sleep 0.2
                     echo -e "\033[1A\033[K└ [\] connecting"
                     connectionCheck=$(nmcli dev wifi list)
-                    if grep -q "*" *; then
+                    if [[ $connectionCheck =~ [*] ]]; then
                         echo -e "\033[1A\033[K└ Connected :p"
                     else
                         echo -e "\033[1;31m└ Error 6: failed to connect to internet\e[0m"
