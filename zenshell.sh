@@ -155,60 +155,55 @@ while [ "$running" == true ]; do
                 echo -e "\e[1;31m└Error 3: missing arguments\e[0m" 
                 read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             elif [ "$arg2" != "" ]; then
-                if [ "$arg3" == "" ]; then
-                    echo -e "\e[1;31m└Error 3: missing arguments\e[0m"
-                    read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
-                elif [ "$arg3" != "" ]; then
-                    sudo nmcli dev wifi connect "$arg3" password "$arg4"
-                    echo -e "\033[1A\033[K└ [/] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [|] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [\] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [/] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [|] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [\] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [/] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [|] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [\] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [/] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [|] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [\] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [/] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [|] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [\] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [/] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [|] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [\] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [/] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [|] connecting"
-                    sleep 0.2
-                    echo -e "\033[1A\033[K└ [\] connecting"
-                    connectionCheck=$(nmcli dev wifi list)
-                    if [[ $connectionCheck =~ [*] ]]; then
-                        echo -e "\033[1A\033[K└ Connected :p"
-                    else
-                        echo -e "\033[1;31m└ Error 6: failed to connect to internet\e[0m"
-                    fi
-                    read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
+                sudo nmcli dev wifi connect "$arg2" password "$arg3"
+                echo -e "\033[1A\033[K└ [/] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [|] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [\] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [/] connecting"                    
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [|] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [\] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [/] connecting"                    
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [|] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [\] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [/] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [|] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [\] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [/] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [|] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [\] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [/] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [|] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [\] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [/] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [|] connecting"
+                sleep 0.2
+                echo -e "\033[1A\033[K└ [\] connecting"
+                connectionCheck=$(nmcli dev wifi list | grep "$arg2")
+                if [[ $connectionCheck =~ * ]]; then
+                    echo -e "\033[1A\033[K└ Connected :p"
+                else
+                    echo -e "\033[1;31m└ Error 6: failed to connect to internet\e[0m"
                 fi
+                read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             fi
         fi
         #ENTER MODULES HERE
