@@ -1,3 +1,4 @@
 # ignore the update folder
 update/
 *.md
+exopod/
