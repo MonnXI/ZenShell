@@ -1,5 +1,5 @@
 # ZenShell Project
-![Static Badge](https://img.shields.io/badge/Stars-1-blue?style=flat)
+![Static Badge](https://img.shields.io/badge/Stars-2-blue?style=flat)
 
 
 ## Description:
