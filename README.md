@@ -8,7 +8,7 @@
 
 ## Usage:
   To use this script, run:
-  ./zenshell-stable.sh
+  ./zenshell.sh
 
 ## Licence
   Ce projet est sous licence sous les termes de la Licence publique générale GNU v3.0.
