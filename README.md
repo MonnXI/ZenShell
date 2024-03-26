@@ -1,4 +1,4 @@
-# ZenShell Project
+# ZenShell Project (beta)
 ![Static Badge](https://img.shields.io/badge/Stars-2-yellow?style=flat)
 
 
@@ -11,11 +11,11 @@
   ./zenshell.sh
 
 ## Licence
-  Ce projet est sous licence sous les termes de la Licence publique générale GNU v3.0.
-  La version la plus récente de la licence est disponible sur :
+  This project is under the GNU GPL 3.0.
+  The latest version of this licence is disponible at this url :
   [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html)
 
-#### For the beta version look at the beta branch
+#### This program is still in beta bugs are possible make sure to save all your important data
 ##### ZenShell works with Bash 5.0 https://www.gnu.org/software/bash/
 
 Copyright (c) 2024 MonnTheBoss
