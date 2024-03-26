@@ -11,8 +11,8 @@
   ./zenshell.sh
 
 ## Licence
-  Ce projet est sous licence sous les termes de la Licence publique générale GNU v3.0.
-  La version la plus récente de la licence est disponible sur :
+  This project is under the GNU GPL v.3.0 
+  The latest version of this licence is disponible at this url :
   [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html)
 
 #### For the beta version look at the beta branch
