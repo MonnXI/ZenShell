@@ -17,7 +17,7 @@ latestVersion=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/stabl
 latestBeta=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/beta/update/latestVersion.txt')
 running=true
 if [ $? -ne 0 ]; then
-    echo -e "\e[1;31m└Error 8: no internet connection\e[0m"
+    echo -e "\e[1;31m└[x] Error 8: no internet connection\e[0m"
     exit
 fi
 declare -A moduleNames
@@ -63,16 +63,16 @@ while [ "$running" == true ]; do
             echo -e "module command:\narg1: install / remove / update\narg2: module_url / module_name"
         elif [ "$arg1" == "install" ]; then
             if [ "$arg2" == "" ]; then
-                echo -e "\e[1;31m└Error 3: missing arguments\e[0m"
+                echo -e "\e[1;31m└[x] Error 3: missing arguments\e[0m"
             elif [ "$arg2" != "" ]; then
                 module=$(curl -s "$arg2")
-                line_number=212
+                line_number=185
                 module_name=$(curl -s "$arg2" | grep "name=")
                 if [ -n "$module_name" ]; then
                     awk -v content="$module" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
                     echo -e "└Successfully downloaded : $module_name"
                 else
-                    echo -e "\e[1;31m└Error 4: this is not a module\e[0m"
+                    echo -e "\e[1;31m└[x] Error 4: this is not a module\e[0m"
                 fi
             fi
         fi
@@ -84,6 +84,14 @@ while [ "$running" == true ]; do
         echo -e "│Help menu : \n│Command help [n arguments]: show this menu\n│Command exit [no arguments]: exit the terminal\n│Command version [no arguments]: show the actual version and the latest version of ZenShell\n│Command clear [no arguments]: clear the terminal\n│Command module [install/remove/update] [module_url(install)/module_name(remove/update)]: manage the modules of ZenShell\n│Command wifi [list/connect] [ssid] [password]: to list wifi connections available or connect to a wifi with wpa2 or wpa3 security\n└Command update [beta/stable/info]: to switch from stable to beta just update or know the update infos"
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "update" ]; then
+        echo -e "│--- Update command ---"
+        echo -e "│"
+        echo -e "│ beta : to update to beta version"
+        echo -e "│ stable : to update to stable version"
+        echo -e "│ info : to get the information about the update"
+        echo -e "│ let empty to just update your zenshell"
+        echo -e "│"
+        read -p "└[Update] ➜ " arg1 arg2 
         if [ "$arg1" == "stable" ]; then
             if [ "$goodVersion" == false ]; then
                 if [ "$beta" == false ]; then
@@ -148,63 +156,74 @@ while [ "$running" == true ]; do
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "wifi" ]; then
         if [ "$arg1" == "" ]; then
-            echo -e "│---WIFI Command---\n│\n│➜ connect: [wifi connect (SSID) (PASSWD)]\n└➜ list: [no arguments]"
+            echo -e "│ WiFi command:"
+            echo -e "│ "
+            echo -e "│ list : show available wifi networks"
+            echo -e "│ connect SSID passwd : connect to a wifi network using passwd and ssid\n│"
+            read -p "└[Wifi] ➜ " warg1 warg2 warg3
+            if [ "$warg1" == "list" ]; then
+                nmcli dev wifi list
+            elif [ "$warg1" == "connect" ]; then
+                if [ "$warg2" == "" ]; then
+                    echo -e "\e[1;31m└[x] Error 3: missing arguments\e[0m" 
+                    read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
+                elif [ "$warg2" != "" ]; then
+                    if [ "$warg3" != "" ]; then
+                        sudo nmcli dev wifi connect "$warg2" password "$warg3"
+                        beforeTime=$(date +%s)
+                        while true; do
+                            startTime=$(date +%s)
+                            runningTime=$((startTime - beforeTime))
+                            echo -e "\033[1A\033[K│ [/] connecting"
+                            sleep 0.3
+                            echo -e "\033[1A\033[K│ [|] connecting"
+                            sleep 0.3
+                            echo -e "\033[1A\033[K│ [\\] connecting"
+                            sleep 0.3
+                            if [ $runningTime -ge 4 ]; then
+                                break
+                            fi
+                        done
+                        connectionCheck=$(nmcli dev wifi list | grep "$warg2")
+                        if [[ $connectionCheck =~ * ]]; then
+                            echo -e "\033[1A\033[K└ Connected :p"
+                        else
+                            echo -e "\033[1;31m└[x] Error 6: failed to connect to internet\e[0m"
+                        fi
+                    else
+                        echo -e "\e[1;31m└[x] Error 3: missing arguments\e[0m" 
+                    fi
+                fi
+            fi
             read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
         elif [ "$arg1" == "list" ]; then
             nmcli dev wifi list
             read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
         elif [ "$arg1" == "connect" ]; then
             if [ "$arg2" == "" ]; then
-                echo -e "\e[1;31m└Error 3: missing arguments\e[0m" 
+                echo -e "\e[1;31m└[x] Error 3: missing arguments\e[0m" 
                 read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             elif [ "$arg2" != "" ]; then
                 sudo nmcli dev wifi connect "$arg2" password "$arg3"
-                echo -e "\033[1A\033[K└ [/] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [|] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [\] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [/] connecting"                    
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [|] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [\] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [/] connecting"                    
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [|] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [\] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [/] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [|] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [\] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [/] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [|] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [\] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [/] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [|] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [\] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [/] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [|] connecting"
-                sleep 0.2
-                echo -e "\033[1A\033[K└ [\] connecting"
+                beforeTime=$(date +%s)
+                while true; do
+                    startTime=$(date +%s)
+                    runningTime=$((startTime - beforeTime))
+                    echo -e "\033[1A\033[K│ [/] connecting"
+                    sleep 0.3
+                    echo -e "\033[1A\033[K│ [|] connecting"
+                    sleep 0.3
+                    echo -e "\033[1A\033[K│ [\\] connecting"
+                    sleep 0.3
+                    if [ $runningTime -ge 4 ]; then
+                        break
+                    fi
+                done
                 connectionCheck=$(nmcli dev wifi list | grep "$arg2")
                 if [[ $connectionCheck =~ * ]]; then
                     echo -e "\033[1A\033[K└ Connected :p"
                 else
-                    echo -e "\033[1;31m└ Error 6: failed to connect to internet\e[0m"
+                    echo -e "\033[1;31m└[x] Error 6: failed to connect to internet\e[0m"
                 fi
                 read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             fi
@@ -213,7 +232,7 @@ while [ "$running" == true ]; do
     elif [ "$commandvar" == "" ]; then
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     else
-        echo -e "\e[1;31m└Error 1: command not found\e[0m"
+        echo -e "\e[1;31m└[x] Error 1: command not found\e[0m"
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     fi
 done
