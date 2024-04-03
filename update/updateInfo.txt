@@ -2,11 +2,13 @@
 │
 │SMALL REMEMBER :
 │
-│The module command is soon going to be deprecated
+│The module command is soon going to be deprecated and replaced by the exopod command. The exopod command is still not working so there's no use to it but 
+│the next update will add the exopod command.
 │
-│IMPORTANT --- The objective of modules is to get the community to participate while creating any │modules they want with their need
+│IMPORTANT --- The objective of modules is to get the community to participate while creating any 
+│modules they want with their need
 │
 │
 │What's new :
-│  -The update command is there with a way to download the beta version and the stable with only one command
+└  -The update command and the wifi command are more user friendly.
 
