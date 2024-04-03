@@ -6,6 +6,10 @@
   ZenShell is a project of bash with custom commands and modules that you can install to do things 
   like: brutforce a password, check a json file, get a wifi list, etc.
 
+## How to report bugs:
+  To report bugs please use the github issues.
+  > When you are using issues please use tags so I can find more easily what's a bug and what's not
+
 ## Usage:
   To use this script, run:
   ./zenshell.sh
@@ -18,4 +22,4 @@
 #### This program is still in beta bugs are possible make sure to save all your important data
 ##### ZenShell works with Bash 5.0 https://www.gnu.org/software/bash/
 
-Copyright (c) 2024 MonnTheBoss
+> Copyright (c) 2024 MonnTheBoss
