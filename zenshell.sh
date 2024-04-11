@@ -22,7 +22,7 @@ if [ $? -ne 0 ]; then
 fi
 declare -A moduleNames
 beta=true
-version="1.1.12 (beta)"
+version="1.1.13 (beta)"
 goodVersion=true
 
 mKey=0
