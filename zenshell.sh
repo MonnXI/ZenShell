@@ -79,6 +79,13 @@ while [ "$running" == true ]; do
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "exopod" ]; then
         read -p "└[Exopod] ➜ " exoMain exo1 exo2 exo3
+        if [ "$exoMain" == "" ]; then
+            echo -e "\e[1;31m-[x] Error 3: missing arguments\e[0m"
+        elif [ "$exoMain" == "install" ]; then
+            if [ "$exo1" == "" ]; then
+                echo -e "\e[1;31m-[x] Error 3: missing arguments\e[0m"
+            fi
+        fi
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "help" ]; then
         echo -e "│Help menu : \n│Command help [n arguments]: show this menu\n│Command exit [no arguments]: exit the terminal\n│Command version [no arguments]: show the actual version and the latest version of ZenShell\n│Command clear [no arguments]: clear the terminal\n│Command module [install/remove/update] [module_url(install)/module_name(remove/update)]: manage the modules of ZenShell\n│Command wifi [list/connect] [ssid] [password]: to list wifi connections available or connect to a wifi with wpa2 or wpa3 security\n└Command update [beta/stable/info]: to switch from stable to beta just update or know the update infos"
