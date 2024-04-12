@@ -45,3 +45,5 @@ if ! which nmcli > /dev/null; then
 else
     echo -e "nmcli is present on the system!"
 fi
+
+curl -O https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh
