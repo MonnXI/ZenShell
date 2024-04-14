@@ -8,7 +8,7 @@
 
 ## Usage:
   To use this script, run:
-  ./zenshell.sh
+  ./zenshell.sh \n
   If it's the first time you are using ZenShell download install.sh and run: 
   ./install.sh
 
