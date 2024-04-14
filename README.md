@@ -9,6 +9,8 @@
 ## Usage:
   To use this script, run:
   ./zenshell.sh
+  If it's the first time you are using ZenShell download install.sh and run: 
+  ./install.sh
 
 ## Licence
   This project is under the GNU GPL v.3.0 
