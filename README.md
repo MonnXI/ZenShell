@@ -2,6 +2,9 @@
 ![Static Badge](https://img.shields.io/badge/Stars-3-yellow?style=flat)
 
 
+## What's happening right now:
+  We are currently working on ZenShell's website to get more people to know ZenShell.
+
 ## Description:
   ZenShell is a project of bash with custom commands and modules that you can install to do things 
   like: brutforce a password, check a json file, get a wifi list, etc.
