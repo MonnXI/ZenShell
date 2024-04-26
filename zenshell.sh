@@ -60,35 +60,21 @@ while [ "$running" == true ]; do
     elif [ "$commandvar" == "clear" ]; then
         clear
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
-    elif [ "$commandvar" == "module" ]; then
-        if [ "$arg1" == "" ]; then
-            echo -e "module command:\narg1: install / remove / update\narg2: module_url / module_name"
-        elif [ "$arg1" == "install" ]; then
-            if [ "$arg2" == "" ]; then
-                echo -e "\e[1;31m└[x] Error 3: missing arguments\e[0m"
-            elif [ "$arg2" != "" ]; then
-                module=$(curl -s "$arg2")
-                line_number=231
-                module_name=$(curl -s "$arg2" | grep "name=")
-                if [ -n "$module_name" ]; then
-                    awk -v content="$module" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
-                    echo -e "└Successfully downloaded : $module_name"
-                else
-                    echo -e "\e[1;31m└[x] Error 4: this is not a module\e[0m"
-                fi
-            fi
-        fi
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "exopod" ]; then
         read -p "│[Exopod] ➜ " exoMain exo1 exo2 exo3
         if [ "$exoMain" == "" ]; then
-            echo -e "\e[1;31m-[x] Error 3: missing arguments\e[0m"
+            echo -e "\033[1;31m-[x] Error 3: missing arguments\033[0m"
         elif [ "$exoMain" == "install" ]; then
             if [ "$exo1" == "" ]; then
-                echo -e "\e[1;31m-[x] Error 3: missing arguments\e[0m"
+                echo -e "\033[1;31m-[x] Error 3: missing arguments\033[0m"
             else
                 if [[ -v modules["$exo1"] ]]; then
-                    echo "Y"
+                    downloadModule=$(curl -s "${modules["$exo1"]}")
+                    line_number=233
+                    awk -v content="$downloadModule" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
+                    chmod u+x zenshell.sh
+                    echo -e "└Successfully downloaded : $exo1"
                 else
                     echo "n"
                 fi
@@ -180,7 +166,7 @@ while [ "$running" == true ]; do
                 nmcli dev wifi list
             elif [ "$warg1" == "connect" ]; then
                 if [ "$warg2" == "" ]; then
-                    echo -e "\e[1;31m└[x] Error 3: missing arguments\e[0m" 
+                    echo -e "\033[1;31m└[x] Error 3: missing arguments\033[0m" 
                     read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
                 elif [ "$warg2" != "" ]; then
                     if [ "$warg3" != "" ]; then
@@ -203,10 +189,10 @@ while [ "$running" == true ]; do
                         if [[ $connectionCheck =~ * ]]; then
                             echo -e "\033[1A\033[K└ Connected :p"
                         else
-                            echo -e "\033[1;31m└[x] Error 6: failed to connect to internet\e[0m"
+                            echo -e "\033[1;31m└[x] Error 6: failed to connect to internet\033[0m"
                         fi
                     else
-                        echo -e "\e[1;31m└[x] Error 3: missing arguments\e[0m" 
+                        echo -e "\033[1;31m└[x] Error 3: missing arguments\033[0m" 
                     fi
                 fi
             fi
@@ -216,7 +202,7 @@ while [ "$running" == true ]; do
             read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
         elif [ "$arg1" == "connect" ]; then
             if [ "$arg2" == "" ]; then
-                echo -e "\e[1;31m└[x] Error 3: missing arguments\e[0m" 
+                echo -e "\033[1;31m└[x] Error 3: missing arguments\033[0m" 
                 read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             elif [ "$arg2" != "" ]; then
                 sudo nmcli dev wifi connect "$arg2" password "$arg3"
@@ -238,7 +224,7 @@ while [ "$running" == true ]; do
                 if [[ $connectionCheck =~ * ]]; then
                     echo -e "\033[1A\033[K└ Connected :p"
                 else
-                    echo -e "\033[1;31m└[x] Error 6: failed to connect to internet\e[0m"
+                    echo -e "\033[1;31m└[x] Error 6: failed to connect to internet\033[0m"
                 fi
                 read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             fi
@@ -247,7 +233,7 @@ while [ "$running" == true ]; do
     elif [ "$commandvar" == "" ]; then
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     else
-        echo -e "\e[1;31m└[x] Error 1: command not found\e[0m"
+        echo -e "\033[1;31m└[x] Error 1: command not found\033[0m"
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     fi
 done
