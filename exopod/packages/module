@@ -3,7 +3,7 @@
             echo -e "module command:\narg1: install / remove / update\narg2: module_url / module_name"
         elif [ "$arg1" == "install" ]; then
             if [ "$arg2" == "" ]; then
-                echo -e "\e[1;31m└[x] Error 3: missing arguments\e[0m"
+                echo -e "\033[1;31m└[x] Error 3: missing arguments\033[0m"
             elif [ "$arg2" != "" ]; then
                 module=$(curl -s "$arg2")
                 line_number=231
@@ -12,7 +12,7 @@
                     awk -v content="$module" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
                     echo -e "└Successfully downloaded : $module_name"
                 else
-                    echo -e "\e[1;31m└[x] Error 4: this is not a module\e[0m"
+                    echo -e "\033[1;31m└[x] Error 4: this is not a module\033[0m"
                 fi
             fi
         fi
