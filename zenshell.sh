@@ -13,17 +13,17 @@
 # https://www.gnu.org/licenses/gpl-3.0.html
 #######################################################################
 
+
 latestVersion=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/stable/update/latestVersion.txt')
 latestBeta=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/beta/update/latestVersion.txt')
 running=true
-if [ $? -ne 0 ]; then
-    echo -e "\e[1;31m└[x] Error 8: no internet connection\e[0m"
-    exit
-fi
-declare -A moduleNames
+declare -A modules
+modules=( ["module"]="https://raw.githubusercontent.com/MonnXI/ZenShell/stable/exopod/packages/module" )
 beta=true
 version="1.1.13 (beta)"
 goodVersion=true
+
+#echo "${modules[module]}" IT WORKS !!!
 
 mKey=0
 
@@ -78,12 +78,13 @@ while [ "$running" == true ]; do
         fi
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "exopod" ]; then
-        read -p "└[Exopod] ➜ " exoMain exo1 exo2 exo3
+        read -p "│[Exopod] ➜ " exoMain exo1 exo2 exo3
         if [ "$exoMain" == "" ]; then
             echo -e "\e[1;31m-[x] Error 3: missing arguments\e[0m"
         elif [ "$exoMain" == "install" ]; then
             if [ "$exo1" == "" ]; then
                 echo -e "\e[1;31m-[x] Error 3: missing arguments\e[0m"
+            elif [ "$exo1" == "install" ]
             fi
         fi
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
@@ -98,7 +99,7 @@ while [ "$running" == true ]; do
         echo -e "│ info : to get the information about the update"
         echo -e "│ let empty to just update your zenshell"
         echo -e "│"
-        read -p "└[Update] ➜ " arg1 arg2 
+        read -p "│[Update] ➜ " arg1 arg2 
         if [ "$arg1" == "stable" ]; then
             if [ "$goodVersion" == false ]; then
                 if [ "$beta" == false ]; then
@@ -167,7 +168,7 @@ while [ "$running" == true ]; do
             echo -e "│ "
             echo -e "│ list : show available wifi networks"
             echo -e "│ connect SSID passwd : connect to a wifi network using passwd and ssid\n│"
-            read -p "└[Wifi] ➜ " warg1 warg2 warg3
+            read -p "│[Wifi] ➜ " warg1 warg2 warg3
             if [ "$warg1" == "list" ]; then
                 nmcli dev wifi list
             elif [ "$warg1" == "connect" ]; then
