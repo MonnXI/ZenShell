@@ -16,3 +16,4 @@
                 fi
             fi
         fi
+        read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
