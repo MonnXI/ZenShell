@@ -84,7 +84,12 @@ while [ "$running" == true ]; do
         elif [ "$exoMain" == "install" ]; then
             if [ "$exo1" == "" ]; then
                 echo -e "\e[1;31m-[x] Error 3: missing arguments\e[0m"
-            elif [ "$exo1" == "install" ]
+            else
+                if [[ -v modules["$exo1"] ]]; then
+                    echo "Y"
+                else
+                    echo "n"
+                fi
             fi
         fi
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
