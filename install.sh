@@ -1,6 +1,8 @@
 #!/bin/bash
 
 #######################################################################
+# If you never ran ZenShell run this script to install all dependencies and modules to be able to run ZenShell.
+#
 # Program: ZenShell
 # Copyright (c) 2024 MonnTheBoss, Lichen
 # 
