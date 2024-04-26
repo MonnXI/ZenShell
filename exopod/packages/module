@@ -1,4 +1,4 @@
-elif [ "$commandvar" == "module" ]; then
+    elif [ "$commandvar" == "module" ]; then
         if [ "$arg1" == "" ]; then
             echo -e "module command:\narg1: install / remove / update\narg2: module_url / module_name"
         elif [ "$arg1" == "install" ]; then
