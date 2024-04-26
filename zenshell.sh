@@ -11,6 +11,8 @@
 # This script is governed by the terms of the GNU General Public License v3.0
 # The latest version of the license can be found at:
 # https://www.gnu.org/licenses/gpl-3.0.html
+#
+#ZenShell's website can be found at http://76.70.62.206:8080
 #######################################################################
 
 
