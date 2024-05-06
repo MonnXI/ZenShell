@@ -1,0 +1,3 @@
+    elif [ "$commandvar" == "exopod" ]; then
+        read -p │[Print] ➜ content
+        echo -e "└$content"
