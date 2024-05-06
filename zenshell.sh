@@ -64,14 +64,14 @@ while [ "$running" == true ]; do
     elif [ "$commandvar" == "exopod" ]; then
         read -p "│[Exopod] ➜ " exoMain exo1 exo2 exo3
         if [ "$exoMain" == "" ]; then
-            echo -e "\033[1;31m-[x] Error 3: missing arguments\033[0m"
+            echo -e "\033[1;31m└[x] Error 3: missing arguments\033[0m"
         elif [ "$exoMain" == "install" ]; then
             if [ "$exo1" == "" ]; then
-                echo -e "\033[1;31m-[x] Error 3: missing arguments\033[0m"
+                echo -e "\033[1;31m└[x] Error 3: missing arguments\033[0m"
             else
                 if [[ -v modules["$exo1"] ]]; then
                     downloadModule=$(curl -s "${modules["$exo1"]}")
-                    line_number=233
+                    line_number=237
                     awk -v content="$downloadModule" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
                     chmod u+x zenshell.sh
                     echo -e "└Successfully downloaded : $exo1"
@@ -79,6 +79,10 @@ while [ "$running" == true ]; do
                     echo "n"
                 fi
             fi
+        elif [ "$exoMain" == "info" ]; then
+            echo -e "│\n│Exopod command:\n│\n│install : to install an exopod package\n│version : to get the version of exopod\n│remove : to uninstall an exopod package\n│info : show this message\n└update : to update an exopod package"
+        else
+            echo -e "\033[1;31m└[x]Error 1: command not found\033[0m"
         fi
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
     elif [ "$commandvar" == "help" ]; then
@@ -228,6 +232,7 @@ while [ "$running" == true ]; do
                 fi
                 read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             fi
+        read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
         fi
         #ENTER MODULES HERE
     elif [ "$commandvar" == "" ]; then
