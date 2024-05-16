@@ -20,7 +20,7 @@ latestVersion=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/stabl
 latestBeta=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/beta/update/latestVersion.txt')
 running=true
 declare -A modules
-modules=( ["module"]="https://raw.githubusercontent.com/MonnXI/ZenShell/stable/exopod/packages/module" )
+modules=( ["module"]="https://raw.githubusercontent.com/MonnXI/ZenShell/stable/exopod/packages/module" ["print"]="https://github.com/MonnXI/ZenShell/blob/stable/exopod/packages/print")
 beta=true
 version="1.1.15 (beta)"
 goodVersion=true
@@ -71,7 +71,7 @@ while [ "$running" == true ]; do
             else
                 if [[ -v modules["$exo1"] ]]; then
                     downloadModule=$(curl -s "${modules["$exo1"]}")
-                    line_number=237
+                    line_number=238
                     awk -v content="$downloadModule" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
                     chmod u+x zenshell.sh
                     echo -e "└Successfully downloaded : $exo1"
