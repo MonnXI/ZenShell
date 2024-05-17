@@ -87,11 +87,11 @@ while [ "$running" == true ]; do
                 echo -e "\033[1;31m└[x] Error 3: missing arguments\033[0m"
             else
                 if [[ -v modules["$exo1"] ]]; then
-                    moduleStartLine=$(grep -n "elif \[ \"\$commandvar\" == \"$exo1\" \]; then" test.sh | cut -d: -f1)
-                    moduleEndLine=$(grep -n "elif \[ \"\$commandvar\" == \"[a-zA-Z0-9]*\" \]; then" test.sh | grep -A1 -m1 "$exo1" | tail -n1 | cut -d: -f1)
+                    moduleStartLine=$(grep -n "elif \[ \"\$commandvar\" == \"$exo1\" \]; then" zenshell.sh | cut -d: -f1)
+                    moduleEndLine=$(grep -n "elif \[ \"\$commandvar\" == \"[a-zA-Z0-9]*\" \]; then" zenshell.sh | grep -A1 -m1 "$exo1" | tail -n1 | cut -d: -f1)
                     if [ -n "$moduleStartLine" ] && [ -n "$moduleEndLine" ]; then
                         moduleEndLine=$((moduleEndLine - 1))
-                        sed -i "$moduleStartLine,${moduleEndLine}d" test.sh
+                        sed -i "$moduleStartLine,${moduleEndLine}d" zenshell.sh
                         echo "Module $exo1 removed successfully."
                     else
                         echo "Module $exo1 borders found."
