@@ -1,6 +1,8 @@
 #!/bin/bash
 
 #######################################################################
+# If you never ran ZenShell run this script to install all dependencies and modules to be able to run ZenShell.
+#
 # Program: ZenShell
 # Copyright (c) 2024 MonnTheBoss, Lichen
 # 
@@ -46,4 +48,14 @@ else
     echo -e "nmcli is present on the system!"
 fi
 
-curl -O https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh
+read -p "Which version do you want to install [beta/stable]" release
+
+if [ "$release" == "stable" ]; then
+    curl -O https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh
+    exit
+elif [ "$release" == "beta" ]; then
+    curl -O https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh
+    exit
+else
+    echo "Please enter a correct answer."
+    read -p "Which version do you want to install [beta/stable]" release
