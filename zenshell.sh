@@ -20,7 +20,7 @@ latestVersion=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/stabl
 latestBeta=$(curl -s 'https://raw.githubusercontent.com/MonnXI/ZenShell/beta/update/latestVersion.txt')
 running=true
 declare -A modules
-modules=( ["module"]="https://raw.githubusercontent.com/MonnXI/ZenShell/stable/exopod/packages/module" ["print"]="https://github.com/MonnXI/ZenShell/blob/stable/exopod/packages/print")
+modules=( ["module"]="https://raw.githubusercontent.com/MonnXI/ZenShell/stable/exopod/packages/module" ["print"]="https://raw.githubusercontent.com/MonnXI/ZenShell/stable/exopod/packages/print")
 beta=true
 version="1.1.15 (beta)"
 goodVersion=true
@@ -71,16 +71,33 @@ while [ "$running" == true ]; do
             else
                 if [[ -v modules["$exo1"] ]]; then
                     downloadModule=$(curl -s "${modules["$exo1"]}")
-                    line_number=238
+                    #Change the line in case of update
+                    line_number=255
                     awk -v content="$downloadModule" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
                     chmod u+x zenshell.sh
                     echo -e "└Successfully downloaded : $exo1"
                 else
-                    echo "n"
+                    echo -e "\033[1;31m└[x]Error 9: could not install the package, check your internet connection\033[0m"
                 fi
             fi
         elif [ "$exoMain" == "info" ]; then
             echo -e "│\n│Exopod command:\n│\n│install : to install an exopod package\n│version : to get the version of exopod\n│remove : to uninstall an exopod package\n│info : show this message\n└update : to update an exopod package"
+        elif [ "$exoMain" == "remove" ]; then
+            if [ "$exo1" == "" ]; then
+                echo -e "\033[1;31m└[x] Error 3: missing arguments\033[0m"
+            else
+                if [[ -v modules["$exo1"] ]]; then
+                    moduleStartLine=$(grep -n "elif \[ \"\$commandvar\" == \"$exo1\" \]; then" test.sh | cut -d: -f1)
+                    moduleEndLine=$(grep -n "elif \[ \"\$commandvar\" == \"[a-zA-Z0-9]*\" \]; then" test.sh | grep -A1 -m1 "$exo1" | tail -n1 | cut -d: -f1)
+                    if [ -n "$moduleStartLine" ] && [ -n "$moduleEndLine" ]; then
+                        moduleEndLine=$((moduleEndLine - 1))
+                        sed -i "$moduleStartLine,${moduleEndLine}d" test.sh
+                        echo "Module $exo1 removed successfully."
+                    else
+                        echo "Module $exo1 borders found."
+                    fi
+                fi
+            fi
         else
             echo -e "\033[1;31m└[x]Error 1: command not found\033[0m"
         fi
@@ -252,3 +269,4 @@ done
 # Error 6: failed to connect to internet
 # Error 7: cannot reach url
 # Error 8: no internet connection
+# Error 9: could not install the package, check your internet connection
