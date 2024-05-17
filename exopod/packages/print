@@ -1,5 +1,5 @@
     elif [ "$commandvar" == "print" ]; then
-        read -p "│[Print] ➜ content"
+        read -p "│[Print] ➜ " content
         echo -e "└$content"
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
 
