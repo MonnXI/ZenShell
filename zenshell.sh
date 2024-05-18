@@ -72,7 +72,7 @@ while [ "$running" == true ]; do
                 if [[ -v modules["$exo1"] ]]; then
                     downloadModule=$(curl -s "${modules["$exo1"]}")
                     #Change the line in case of update
-                    line_number=255
+                    line_number=268
                     awk -v content="$downloadModule" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
                     chmod u+x zenshell.sh
                     echo -e "└Successfully downloaded : $exo1"
@@ -97,6 +97,19 @@ while [ "$running" == true ]; do
                         echo "Module $exo1 borders found."
                     fi
                 fi
+            fi
+        elif [ "$exoMain" == "update" ]; then
+            if [[ -v modules["$exo1"] ]]; then
+                    moduleStartLine=$(grep -n "elif \[ \"\$commandvar\" == \"$exo1\" \]; then" zenshell.sh | cut -d: -f1)
+                    moduleEndLine=$(grep -n "elif \[ \"\$commandvar\" == \"[a-zA-Z0-9]*\" \]; then" zenshell.sh | grep -A1 -m1 "$exo1" | tail -n1 | cut -d: -f1)
+                    if [ -n "$moduleStartLine" ] && [ -n "$moduleEndLine" ]; then
+                        moduleEndLine=$((moduleEndLine - 1))
+                        sed -i "$moduleStartLine,${moduleEndLine}d" zenshell.sh
+                    fi
+                    downloadModule=$(curl -s "${modules["$exo1"]}")
+                    awk -v content="$downloadModule" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
+                    chmod u+x zenshell.sh
+                    echo -e "└Successfully updated : $exo1"
             fi
         else
             echo -e "\033[1;31m└[x]Error 1: command not found\033[0m"
