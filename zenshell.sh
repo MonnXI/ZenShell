@@ -77,7 +77,7 @@ while [ "$running" == true ]; do
                     chmod u+x zenshell.sh
                     echo -e "└Successfully downloaded : $exo1"
                 else
-                    echo -e "\033[1;31m└[x]Error 9: could not install the package, check your internet connection\033[0m"
+                    echo -e "\033[1;31m└[x] Error 9: could not install the package, check your internet connection\033[0m"
                 fi
             fi
         elif [ "$exoMain" == "info" ]; then
@@ -92,9 +92,9 @@ while [ "$running" == true ]; do
                     if [ -n "$moduleStartLine" ] && [ -n "$moduleEndLine" ]; then
                         moduleEndLine=$((moduleEndLine - 1))
                         sed -i "$moduleStartLine,${moduleEndLine}d" zenshell.sh
-                        echo "Module $exo1 removed successfully."
+                        echo "└Module $exo1 removed successfully."
                     else
-                        echo "Module $exo1 borders found."
+                        echo "\033[1;31m└[x] Error 10: could not find module's borders\033[0m"
                     fi
                 fi
             fi
@@ -283,3 +283,4 @@ done
 # Error 7: cannot reach url
 # Error 8: no internet connection
 # Error 9: could not install the package, check your internet connection
+# Error 10: could not find module's borders
