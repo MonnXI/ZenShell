@@ -22,8 +22,10 @@ running=true
 declare -A modules
 modules=( ["module"]="https://raw.githubusercontent.com/MonnXI/ZenShell/stable/exopod/packages/module" ["print"]="https://raw.githubusercontent.com/MonnXI/ZenShell/stable/exopod/packages/print")
 beta=false
-version="1.2.0"
+version="1.2.1"
 goodVersion=true
+
+#echo "${modules[module]}" IT WORKS !!!
 
 mKey=0
 
@@ -70,12 +72,12 @@ while [ "$running" == true ]; do
                 if [[ -v modules["$exo1"] ]]; then
                     downloadModule=$(curl -s "${modules["$exo1"]}")
                     #Change the line in case of update
-                    line_number=255
+                    line_number=268
                     awk -v content="$downloadModule" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
                     chmod u+x zenshell.sh
                     echo -e "└Successfully downloaded : $exo1"
                 else
-                    echo -e "\033[1;31m└[x]Error 9: could not install the package, check your internet connection\033[0m"
+                    echo -e "\033[1;31m└[x] Error 9: could not install the package, check your internet connection\033[0m"
                 fi
             fi
         elif [ "$exoMain" == "info" ]; then
@@ -90,11 +92,24 @@ while [ "$running" == true ]; do
                     if [ -n "$moduleStartLine" ] && [ -n "$moduleEndLine" ]; then
                         moduleEndLine=$((moduleEndLine - 1))
                         sed -i "$moduleStartLine,${moduleEndLine}d" zenshell.sh
-                        echo "Module $exo1 removed successfully."
+                        echo "└Module $exo1 removed successfully."
                     else
-                        echo "Module $exo1 borders found."
+                        echo "\033[1;31m└[x] Error 10: could not find module's borders\033[0m"
                     fi
                 fi
+            fi
+        elif [ "$exoMain" == "update" ]; then
+            if [[ -v modules["$exo1"] ]]; then
+                    moduleStartLine=$(grep -n "elif \[ \"\$commandvar\" == \"$exo1\" \]; then" zenshell.sh | cut -d: -f1)
+                    moduleEndLine=$(grep -n "elif \[ \"\$commandvar\" == \"[a-zA-Z0-9]*\" \]; then" zenshell.sh | grep -A1 -m1 "$exo1" | tail -n1 | cut -d: -f1)
+                    if [ -n "$moduleStartLine" ] && [ -n "$moduleEndLine" ]; then
+                        moduleEndLine=$((moduleEndLine - 1))
+                        sed -i "$moduleStartLine,${moduleEndLine}d" zenshell.sh
+                    fi
+                    downloadModule=$(curl -s "${modules["$exo1"]}")
+                    awk -v content="$downloadModule" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
+                    chmod u+x zenshell.sh
+                    echo -e "└Successfully updated : $exo1"
             fi
         else
             echo -e "\033[1;31m└[x]Error 1: command not found\033[0m"
@@ -249,6 +264,9 @@ while [ "$running" == true ]; do
             fi
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
         fi
+    elif [ "$commandvar" == "date" ]; then
+        echo "└ $(date)"
+        read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
         #ENTER MODULES HERE
     elif [ "$commandvar" == "" ]; then
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
@@ -268,3 +286,4 @@ done
 # Error 7: cannot reach url
 # Error 8: no internet connection
 # Error 9: could not install the package, check your internet connection
+# Error 10: could not find module's borders
