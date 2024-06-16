@@ -22,7 +22,7 @@ running=true
 declare -A modules
 modules=( ["module"]="https://raw.githubusercontent.com/MonnXI/ZenShell/stable/exopod/packages/module" ["print"]="https://raw.githubusercontent.com/MonnXI/ZenShell/stable/exopod/packages/print")
 beta=true
-version="1.2.11 (beta)"
+version="1.2.12 (beta)"
 goodVersion=true
 
 #echo "${modules[module]}" IT WORKS !!!
@@ -264,6 +264,9 @@ while [ "$running" == true ]; do
             fi
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
         fi
+    elif [ "$commandvar" == "date" ]; then
+        echo "└ $(date)"
+        read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
         #ENTER MODULES HERE
     elif [ "$commandvar" == "" ]; then
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
