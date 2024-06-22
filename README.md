@@ -1,5 +1,5 @@
 # ZenShell Project
-![Static Badge](https://img.shields.io/badge/Stars-3-yellow?style=flat)
+![Static Badge](https://img.shields.io/badge/Stars-4-yellow?style=flat)
 
 
 ## What's happening right now:
