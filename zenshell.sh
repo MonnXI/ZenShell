@@ -1,6 +1,11 @@
 #!/bin/bash
 
 #######################################################################
+#  ____         ___ _        _ _ 
+# |_  /___ _ _ / __| |_  ___| | |
+#  / // -_) ' \\__ \ ' \/ -_) | |
+# /___\___|_||_|___/_||_\___|_|_|
+#                                
 # Program: ZenShell
 # Copyright (c) 2024 MonnTheBoss, Lichen
 # 
@@ -12,7 +17,7 @@
 # The latest version of the license can be found at:
 # https://www.gnu.org/licenses/gpl-3.0.html
 #
-# ZenShell's website can be found at http://76.70.62.206:8080
+# ZenShell's website can be found at http://184.144.140.71:8080
 #######################################################################
 
 
@@ -25,7 +30,7 @@ beta=true
 version="1.2.12 (beta)"
 goodVersion=true
 
-#echo "${modules[module]}" IT WORKS !!!
+#echo "${modules[module]}" #IT WORKS !!!
 
 mKey=0
 
@@ -130,7 +135,7 @@ while [ "$running" == true ]; do
         if [ "$arg1" == "stable" ]; then
             if [ "$goodVersion" == false ]; then
                 if [ "$beta" == false ]; then
-                    curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
+                    curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"76.70.62.206
                     echo "└Successfully updated stable ZenShell"
                     read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
                 fi
@@ -266,6 +271,15 @@ while [ "$running" == true ]; do
         fi
     elif [ "$commandvar" == "date" ]; then
         echo "└ $(date)"
+        read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
+    elif [ "$commandvar" == "user" ]; then
+        read -p "│[User] ➜ " uarg1
+        if [ "$uarg1" == "list" ]; then
+            echo "└Here's the list of all users:"
+            awk -F: '{ print $1 }' /etc/passwd
+        elif [ "$uarg1" == "me" ]; then
+            echo -e "└You are currently using the user named $(whoami)"
+        fi
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
         #ENTER MODULES HERE
     elif [ "$commandvar" == "" ]; then
