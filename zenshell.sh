@@ -1,8 +1,13 @@
 #!/bin/bash
 
 #######################################################################
+#  ____         ___ _        _ _ 
+# |_  /___ _ _ / __| |_  ___| | |
+#  / // -_) ' \\__ \ ' \/ -_) | |
+# /___\___|_||_|___/_||_\___|_|_|
+#                                
 # Program: ZenShell
-# Copyright (c) 2024 MonnTheBoss, Lichen
+# Copyright (c) 2024 MonnTheBoss
 # 
 # Usage:
 #   To use this script, run:
@@ -22,10 +27,8 @@ running=true
 declare -A modules
 modules=( ["module"]="https://raw.githubusercontent.com/MonnXI/ZenShell/stable/exopod/packages/module" ["print"]="https://raw.githubusercontent.com/MonnXI/ZenShell/stable/exopod/packages/print")
 beta=false
-version="1.2.1"
+version="1.2.2"
 goodVersion=true
-
-#echo "${modules[module]}" IT WORKS !!!
 
 mKey=0
 
@@ -72,7 +75,7 @@ while [ "$running" == true ]; do
                 if [[ -v modules["$exo1"] ]]; then
                     downloadModule=$(curl -s "${modules["$exo1"]}")
                     #Change the line in case of update
-                    line_number=268
+                    line_number=284
                     awk -v content="$downloadModule" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
                     chmod u+x zenshell.sh
                     echo -e "└Successfully downloaded : $exo1"
@@ -130,7 +133,7 @@ while [ "$running" == true ]; do
         if [ "$arg1" == "stable" ]; then
             if [ "$goodVersion" == false ]; then
                 if [ "$beta" == false ]; then
-                    curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
+                    curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"76.70.62.206
                     echo "└Successfully updated stable ZenShell"
                     read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
                 fi
@@ -266,6 +269,15 @@ while [ "$running" == true ]; do
         fi
     elif [ "$commandvar" == "date" ]; then
         echo "└ $(date)"
+        read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
+    elif [ "$commandvar" == "user" ]; then
+        read -p "│[User] ➜ " uarg1
+        if [ "$uarg1" == "list" ]; then
+            echo "└Here's the list of all users:"
+            awk -F: '{ print $1 }' /etc/passwd
+        elif [ "$uarg1" == "me" ]; then
+            echo -e "└You are currently using the user named $(whoami)"
+        fi
         read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
         #ENTER MODULES HERE
     elif [ "$commandvar" == "" ]; then
