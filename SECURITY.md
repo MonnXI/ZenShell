@@ -8,9 +8,8 @@
 | 1.2.x(beta) | ✅                 |
 | 1.1.x       | :x:                |
 | 1.1.1x(beta)| :x:                |
-| 1.0.1(beta) | :x:                |
-| 1.0.0       | :x:                |
-| 1.0.0(beta) | :x:                |
+| 1.0.x(beta) | :x:                |
+| 1.0.x       | :x:                |
 
 ## Reporting a Vulnerability
 
