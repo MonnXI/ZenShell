@@ -9,7 +9,8 @@
 │> The word ZenShel has been added to the header of the main file in ascii art
 │
 │- Fixed exopod line
-│> Exopod wasn't working on the latest version if you did use it it might have broke your ZenShell │installation please check this and reinstall a new version if needed.
+│> Exopod wasn't working on the latest version if you did use it it might have broke your ZenShell
+│installation please check this and reinstall a new version if needed.
 │
 │What are we working on:
 │
