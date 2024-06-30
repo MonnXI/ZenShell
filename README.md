@@ -9,6 +9,8 @@
   ZenShell is a project of bash with custom commands and modules that you can install to do things 
   like: brutforce a password, check a json file, get a wifi list, etc.
 
+  « I would really appreciate if you guys could help me with this project » -MonnTheBoss
+ 
 ## Exopod:
   This is the package management tool for ZenShell. Exo for external and pod for support.
   There are 2 kinds of packages on exopod: The registered ones that are in the code with a simple name and not registered packages that you need to enter a url every time you use it. Evry update we will be adding new registered packages.
