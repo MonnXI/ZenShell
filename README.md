@@ -3,7 +3,7 @@
 
 
 ## What's happening right now:
-  We are currently working on ZenShell's website to get more people to know ZenShell.
+  We are currently working on ZenShell's website to get more people to know ZenShell. We are also working on a better installation wizard made with electron.
 
 ## Description:
   ZenShell is a project of bash with custom commands and modules that you can install to do things 
