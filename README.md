@@ -1,5 +1,5 @@
 # ZenShell Project
-![Static Badge](https://img.shields.io/badge/Stars-4-yellow?style=flat)
+![Static Badge](https://img.shields.io/badge/Stars-3-yellow?style=flat)
 
 
 ## What's happening right now:
@@ -10,6 +10,9 @@
   like: brutforce a password, check a json file, get a wifi list, etc.
 
   « I would really appreciate if you guys could help me with this project » -MonnTheBoss
+
+## How to support us:
+  To support us just star the project and share it to your friends it's the biggest support you could give us.
  
 ## Exopod:
   This is the package management tool for ZenShell. Exo for external and pod for support.
