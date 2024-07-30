@@ -1,1 +1,0 @@
-// To load JavaScript APIs style as react or others
