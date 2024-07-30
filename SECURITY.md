@@ -11,6 +11,10 @@
 | 1.0.x(beta) | :x:                |
 | 1.0.x       | :x:                |
 
+|Installer    | Supported          |
+|-------------|--------------------|
+|1.0.0        |✅                  |
+
 ## Reporting a Vulnerability
 
 Use the issues or contact MonnTheBoss to report any security problem or dangerous glitch.
