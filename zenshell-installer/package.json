@@ -1,0 +1,28 @@
+{
+  "name": "zenshell-installer",
+  "version": "1.0.0",
+  "description": "The zenshell installer",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MonnXI/zenshell-installer.git"
+  },
+  "author": "MonnTheBoss",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/MonnXI/zenshell-installer/issues"
+  },
+  "homepage": "https://github.com/MonnXI/zenshell-installer#readme",
+  "devDependencies": {
+    "@electron/packager": "^18.3.3",
+    "electron": "^31.1.0",
+    "electron-packager": "^17.1.2"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "jquery": "^3.7.1"
+  }
+}

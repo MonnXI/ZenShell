@@ -75,7 +75,7 @@ while [ "$running" == true ]; do
                 if [[ -v modules["$exo1"] ]]; then
                     downloadModule=$(curl -s "${modules["$exo1"]}")
                     #Change the line in case of update
-                    line_number=284
+                    line_number=282
                     awk -v content="$downloadModule" -v line="$line_number" 'NR == line {print content} {print}' zenshell.sh > zenshell.tmp && mv zenshell.tmp zenshell.sh
                     chmod u+x zenshell.sh
                     echo -e "└Successfully downloaded : $exo1"

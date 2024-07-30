@@ -1,0 +1,34 @@
+/* #######################################################################
+#  ____         ___ _        _ _ 
+# |_  /___ _ _ / __| |_  ___| | |
+#  / // -_) ' \\__ \ ' \/ -_) | |
+# /___\___|_||_|___/_||_\___|_|_|
+#                                
+# Program: ZenShell
+# Copyright (c) 2024 MonnTheBoss
+#
+# This script is governed by the terms of the GNU General Public License v3.0
+# The latest version of the license can be found at:
+# https://www.gnu.org/licenses/gpl-3.0.html
+#
+# ZenShell's website can be found at http://184.144.140.71:8080
+####################################################################### */
+
+header {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+}
+
+#title {
+    display: inline-block;
+}
+
+img {
+    height: 125px;
+    width: 125px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}

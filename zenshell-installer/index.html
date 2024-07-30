@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="script.js"></script>
+    <title>ZenShell Installer</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">ZenShell Installer</h1>
+      <img src="./icons/zenshell-logo.svg" alt="ZenShell logo">
+    </header>
+    <div id="check">
+      <p>Choose version (you can change in the future):</p>
+      <form id="form">
+        <div id="versionCheck">
+          <label for="beta">Beta</label>
+          <input type="radio" id="beta" name="version" class="radio" value="beta">
+          <label for="stable">Stable</label>
+          <input type="radio" id="stable" name="version" class="radio" value="stable">
+          <input type="submit" value="Next >" id="next">
+        </div>
+      </form>
+    </div>
+    <div id="progress-container" style="display: none;">
+      <progress id="progress-bar" value="0" max="100"></progress>
+    </div>
+  </body>
+</html>
