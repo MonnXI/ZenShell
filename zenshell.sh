@@ -27,7 +27,7 @@ running=true
 declare -A modules
 modules=( ["module"]="https://raw.githubusercontent.com/MonnXI/ZenShell/stable/exopod/packages/module" ["print"]="https://raw.githubusercontent.com/MonnXI/ZenShell/stable/exopod/packages/print")
 beta=true
-version="1.2.12 (beta)"
+version="1.2.13 (beta)"
 goodVersion=true
 
 #echo "${modules[module]}" #IT WORKS !!!
