@@ -135,12 +135,18 @@ while [ "$running" == true ]; do
         if [ "$arg1" == "stable" ]; then
             if [ "$goodVersion" == false ]; then
                 if [ "$beta" == false ]; then
-                    curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"76.70.62.206
+                    curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
+                    make zenshell
+                    mv zenshell /usr/local/bin
+                    rm zenshell.sh
                     echo "└Successfully updated stable ZenShell"
                     read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
                 fi
             elif [ "$beta" == true ]; then
                 curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
+                make zenshell
+                mv zenshell /usr/local/bin
+                rm zenshell.sh
                 echo "└Successfully switched to stable ZenShell. Restart ZenShell to use it"
                 read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             else
@@ -151,6 +157,9 @@ while [ "$running" == true ]; do
             if [ "$goodVersion" == false ]; then
                 if [ "$beta" == true]; then
                     curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
+                    make zenshell
+                    mv zenshell /usr/local/bin
+                    rm zenshell.sh
                     echo "└Successfully updated your ZenShell beta"
                     read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
                 elif [ "$beta" == false ]; then
@@ -158,6 +167,9 @@ while [ "$running" == true ]; do
                 fi
             elif [ "$beta" == false ]; then
                 curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
+                make zenshell
+                mv zenshell /usr/local/bin
+                rm zenshell.sh
                 echo "└Successfully switched to ZenShell beta. Restart ZenShell to use it."
                 read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
             else
@@ -168,10 +180,16 @@ while [ "$running" == true ]; do
             if [ "$goodVersion" == false ]; then
                 if [ "$beta" == false ]; then
                     curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh"
+                    make zenshell
+                    mv zenshell /usr/local/bin
+                    rm zenshell.sh
                     echo "└Successfully updated stable ZenShell"
                     read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
                 else
                     curl -O "https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh"
+                    make zenshell
+                    mv zenshell /usr/local/bin
+                    rm zenshell.sh
                     echo "└Successfully updated beta ZenShell"
                     read -p "┌[ZenShell] ➜ " commandvar arg1 arg2 arg3 arg4
                 fi
