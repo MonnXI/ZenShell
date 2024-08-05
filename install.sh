@@ -52,9 +52,15 @@ read -p "Which version do you want to install [beta/stable]" release
 
 if [ "$release" == "stable" ]; then
     curl -O https://raw.githubusercontent.com/MonnXI/ZenShell/stable/zenshell.sh
+    make zenshell
+    mv zenshell /usr/local/bin
+    rm zenshell.sh
     exit
 elif [ "$release" == "beta" ]; then
     curl -O https://raw.githubusercontent.com/MonnXI/ZenShell/beta/zenshell.sh
+    make zenshell
+    mv zenshell /usr/local/bin
+    rm zenshell.sh
     exit
 else
     echo "Please enter a correct answer."
